@@ -6,7 +6,8 @@ DF_HOME="$HOME/.local/opt/dwarf-fortress"
 ICON_URL="https://mthec.files.wordpress.com/2009/08/dwarf.png"
 ICON_TMP=/tmp/df.png
 ICON_FINAL="$DF_HOME/icon.png"
-DESKTOP_FILE="$HOME/.local/share/applications/dwarf-fortress.desktop"
+APPLICATIONS_FOLDER="$HOME/.local/share/applications"
+DESKTOP_FILE="$APPLICATIONS_FOLDER/dwarf-fortress.desktop"
 
 download() {
     # Abstract CURL and WGET so we can work on any distro.
@@ -30,6 +31,7 @@ mv $ICON_TMP $ICON_FINAL
 # in modern linux distros
 rm $DF_HOME/libs/libstdc++.so.6
 
+mkdir -p $APPLICATIONS_FOLDER
 cat <<EOF > $DESKTOP_FILE
 [Desktop Entry]
 Name=Dwarf Fortress
