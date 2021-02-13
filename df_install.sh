@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DF_URL="https://www.bay12games.com/dwarves/df_47_04_linux.tar.bz2"
+DF_URL="https://www.bay12games.com/dwarves/df_47_05_linux.tar.bz2"
 DF_TAR=/tmp/df.tar.bz2
 DF_HOME="$HOME/.local/opt/dwarf-fortress"
 ICON_URL="https://mthec.files.wordpress.com/2009/08/dwarf.png"
@@ -44,8 +44,12 @@ Categories=Game;
 StartupWMClass=Dwarf_Fortress
 EOF
 
-echo "Done"
-echo "You now need to ensure you have the necessary dependencies"\
-echo "For fedora, run:"
-echo "       sudo dnf install SDL SDL_ttf SDL_sound SDL_mixer SDL_image mesa-libGLU openal-soft"
+if command -v dnf &> /dev/null; then
+    echo "Installing supporting packages for Fedora..."
+    sudo dnf install SDL SDL_ttf SDL_sound SDL_mixer SDL_image mesa-libGLU openal-soft
+else
+    echo "Done"
+    echo "You now need to ensure you have the necessary dependencies:"
+    echo "       SDL SDL_ttf SDL_sound SDL_mixer SDL_image mesa-libGLU openal-soft"
+fi
 
